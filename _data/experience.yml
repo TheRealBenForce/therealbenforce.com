@@ -1,0 +1,33 @@
+- company: The Vanguard Group
+  position: Cloud Infrastructure Engineer
+  duration: September, 2016 &mdash; Present
+  summary: 
+    Engineer and maintain architectural designs for critical infrastructure services such as DNS, NTP, Active Directory and firewall using troposphere and cloudformation in a modern multi-account environment. Create Bamboo build and deployment specs to support infrastructure deployment using java. Provide full service support of infrastructure throughout its lifecycle. Plan and deploy releases within a follow-the-sun operating model and enterprise ITIL standards.
+    <p>Plan dashboard and alarm KPIs of critical infrastructure components. Create lambda functions when necessary to enrich existing data. Develop dashboards and alarms using Splunk and CloudWatch Alarms. 
+    <p>Provide oversight and expertise to COTS cloud migration teams within the enterprise for creation of supportable, highly available, and cost effective fully automated "one-click" deployments.
+    <p>Collaborate and develop using the Atlassian tool suite. Support engineering culture throughout the Enterprise. 
+    <p>Daily use of most Atlassian tools, git, python, powershell, Splunk, AWS core services, and cloudformation.
+
+- company: The Vanguard Group
+  position: Global Systems Operations Analyst, Tier 2
+  duration: May, 2014 &mdash; September, 2016
+  summary: 
+    Provide second level Windows system administration support in a global, highly available, distributed, and clustered environment consisting of over 5,000 physical and virtual Windows servers for a world leader in investment management. 
+    <p>Primary owner and operator of the enterprise fileshare and home drive environment servicing 15,000 internal clients in offices across the globe. Provisioned fileshares, administered security, maintained quotas and designed solutions to complex business problems. 
+    <p>OS level support to incident response involving any Windows server throughout the enterprise.
+    <p>Root cause analysis for Windows System failures, OS level and hardware.
+    <p>Patching, migrations of many kinds, monitoring alarms from many systems, general maintenance as vulnerabilities are found, etc. 
+    <p>Training and mentoring of junior Admins.
+    <p>Powershell automation.
+
+- company: The Vanguard Group
+  position: Software Testing Administrator
+  duration: July, 2012 &mdash; May, 2014
+  summary: 
+    Managed testing activities among several testing teams for quarterly investment data warehouse maintenance deployments.
+    <p>Managed and performed testing yearly updates on several investment reporting programs and new in-house applications.
+    <p>Collaborate with Developers and DBAs on requirements collection and application design.
+    <p>Supported the mutual fund reporting teams by training on their tools and processes to improve testing standards.
+    <p>Collaborated with business and IT partners to create comprehensive test plans and test cases. Executed tests in HP Quality Center.
+    <p>Lead DMAIC initiative to reform CAT Test Readiness Review process throughout the department.
+    <p>Trained and mentored new testers.
