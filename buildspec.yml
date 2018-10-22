@@ -1,0 +1,33 @@
+# This buildspec.yml can be built with aws/codebuild/ruby:2.3.1
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - |
+        if test "$BUILD_STAGE" = 'STAGING'; then
+          echo "Installing gems with bundler"
+          bundle install
+        else
+          echo "Nothing to install. Moving to build stage"
+        fi
+  build:
+    commands:
+      - echo "Build Stage $BUILD_STAGE start"
+      - |
+        if test "$BUILD_STAGE" = 'STAGING'; then
+          echo "Build site and pushing to $STAGING_S3_BUCKET"
+          bundle exec jekyll build
+          aws s3 rm $STAGING_S3_BUCKET --recursive --exclude error.html
+          aws s3 sync _site/ $STAGING_S3_BUCKET --exclude buildspec.yml
+          BUILDMSG="Copy to staging complete."
+        elif test "$BUILD_STAGE" = 'PRODUCTION'; then
+          echo "Approval received"
+          aws s3 sync $STAGING_S3_BUCKET $PROD_S3_BUCKET --exclude buildspec.yml
+          aws s3 rm $STAGING_S3_BUCKET --recursive --exclude error.html
+          BUILDMSG="Copy to production complete"
+        else
+          echo "Unknown error."
+          BUILDMSG="Unknown error."
+        fi
+      - echo "Build Stage $BUILD_STAGE complete"
