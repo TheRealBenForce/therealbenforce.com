@@ -1,6 +1,6 @@
 - company: The Vanguard Group
   position: Cloud Infrastructure Engineer
-  duration: September, 2016 &mdash; Present
+  duration: September 2016 &mdash; Present
   summary: 
     Engineer and maintain architectural designs for critical infrastructure services such as DNS, NTP, Active Directory and firewall using troposphere and cloudformation in a modern multi-account environment. Create Bamboo build and deployment specs to support infrastructure deployment using java. Provide full service support of infrastructure throughout its lifecycle. Plan and deploy releases within a follow-the-sun operating model and enterprise ITIL standards.
     <p>Plan dashboard and alarm KPIs of critical infrastructure components. Create lambda functions when necessary to enrich existing data. Develop dashboards and alarms using Splunk and CloudWatch Alarms. 
@@ -10,7 +10,7 @@
 
 - company: The Vanguard Group
   position: Global Systems Operations Analyst, Tier 2
-  duration: May, 2014 &mdash; September, 2016
+  duration: May 2014 &mdash; September 2016
   summary: 
     Provide second level Windows system administration support in a global, highly available, distributed, and clustered environment consisting of over 5,000 physical and virtual Windows servers for a world leader in investment management. 
     <p>Primary owner and operator of the enterprise fileshare and home drive environment servicing 15,000 internal clients in offices across the globe. Provisioned fileshares, administered security, maintained quotas and designed solutions to complex business problems. 
@@ -22,7 +22,7 @@
 
 - company: The Vanguard Group
   position: Software Testing Administrator
-  duration: July, 2012 &mdash; May, 2014
+  duration: July 2012 &mdash; May 2014
   summary: 
     Managed testing activities among several testing teams for quarterly investment data warehouse maintenance deployments.
     <p>Managed and performed testing yearly updates on several investment reporting programs and new in-house applications.
