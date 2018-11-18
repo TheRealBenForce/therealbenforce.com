@@ -1,0 +1,19 @@
+# s3plus
+- project: s3plus
+  #url: "https://github.com/TheRealBenForce/s3plus"
+  #role: Founder & Primary Developer
+  #duration: 2017 &mdash; Present
+  description: >
+    <a href="https://github.com/TheRealBenForce/s3plus">s3plus</a> is CloudFormation for the infrastructure that manages a lowcost secure static website (including this site)
+    distrubted over CloudFront CDN as well as a CI/CD pipeline to deploy updates to a secure staging area before signing off on
+    changes that are then pushed to prod.
+  
+# therealbenforce.com source
+- project: This website source
+  #url: "https://github.com/TheRealBenForce/therealbenforce.com"
+  #role: Founder & Primary Developer
+  #duration: 2017 &mdash; Present
+  description: >
+    This site has been created using the Jekyll static site generator. <a href="https://github.com/TheRealBenForce/therealbenforce.com">
+    This repo contains source code</a>. It has been heavily modified from the original template 
+    <a href="https://github.com/jglovier/resume-template">resume-template</a>.
