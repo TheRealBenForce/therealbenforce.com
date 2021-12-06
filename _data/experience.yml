@@ -1,6 +1,15 @@
 - company: The Vanguard Group
+  position: Senior Platform Engineer | End User Computing
+  duration: April 2019 &mdash; Present
+  summary: 
+    Manage an enterprise scale VMware Anywhere Workspace platform.
+    <p>Full stack development and support of service offering integration into our ServiceNow service catalog.
+    <p>Full stack automation of AWS hosted utlities for daily automation, monitoring and sanitzation of our operating and development environments using CI/CD pipeline and integrating with many, many enterprise systems.
+    <p>Evaluate alternative cloud based products such as VMware on AWS, AWS WorkSpaces, and Horizon on Azure and maintain awareness of feature enhancements which can enable new and exciting use cases.
+
+- company: The Vanguard Group
   position: Cloud Infrastructure Engineer
-  duration: September 2016 &mdash; Present
+  duration: September 2016 &mdash; April 2019
   summary: 
     Engineer and maintain architectural designs for critical infrastructure services such as DNS, NTP, Active Directory and firewall using troposphere and cloudformation in a modern multi-account environment. Create Bamboo build and deployment specs to support infrastructure deployment using java. Provide full service support of infrastructure throughout its lifecycle. Plan and deploy releases within a follow-the-sun operating model and enterprise ITIL standards.
     <p>Plan dashboard and alarm KPIs of critical infrastructure components. Create lambda functions when necessary to enrich existing data. Develop dashboards and alarms using Splunk and CloudWatch Alarms. 
