@@ -52,7 +52,7 @@ resume_social_links:
   # resume_facebook_url:          "insert Facebook URL here"
   resume_linkedin_url:          "https://www.linkedin.com/in/theRealBenForce"
   # resume_instagram_url:         "insert your Instagram URL here"
-  resume_website_url:           "https://benforce.io"
+  # resume_website_url:           "https://benforce.io"
   #resume_medium_url:            "https://medium.com/r"
 resume_print_social_links:      true
 
