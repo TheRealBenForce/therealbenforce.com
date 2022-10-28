@@ -14,7 +14,7 @@ resume_name:                    "Ben Force"
 resume_title:                   "Senior Enterprise Engineer"
 
 # used for the contact button in _layouts/resume.html
-resume_contact_email:           "theRealBenForce@gmail.com"
+resume_contact_email:           "theRealBenForce@gmail.com?subject=I visited your website!"
 
 # the next two items are used for schema itemprops in _layouts/resume.html
 resume_contact_telephone:       ""
@@ -23,10 +23,13 @@ resume_contact_address:         ""
 resume_header_contact_info:     ""
 display_header_contact_info:    "false"
 
-resume_header_intro: "In my current role, I am among a few who engineer and manage End User Computing services on the VMware Anywhere Workspace Platform. This consists of a variety virtual desktop (VDI) use cases and over 10,000 corporate and BYOD mobile devices.
-<p>What sets me apart on my team is my experience integrating our reference architectures into other platforms, such as AWS, ServiceNow, Splunk, and PagerDuty. I'm also the lead developer for all code required to support our operations. I have a deep understanding of AWS and its best practices, and I played a critical engineering role in the first few years of our enterprise cloud transformation program.
-<p>Recently, I've spent a lot of time incorporating our service offerings into ServiceNow. This involved learning the Now platform, developing a relationship with our internal platform team, and creating new service catalog offerings for an ever-evolving End User Computing space while supporting those left behind from a bygone era.
-<p>As my experience shows, I am a highly versatile senior engineer that loves learning new technologies and motivating junior engineers."
+resume_header_intro: "In my current role I collaborate within a small team of engineers, UX designers, and UX researchers to improve the day to day lives of our crew through technology. We strive to reduce digital fatigue from crew so they can focus on the moments that matter most.
+<p>What sets me apart on my team is how well I understand the Vanguard machine; people, process, policy, and technology. After many rotations through many different departments, I've developed a deep understanding of the global enterprise stack that we have built a world class business on. Additionally, this journey has allowed me to develop skills and relationships that are valuable on nearly all technology teams. 
+<p>Recently, I've spent a lot of time improving our ServiceNow Service Portal. This involves developing relationships with process and service owners, reading user feedback, conducting interviews and research, and driving change through our development pipeline.
+<p>Prior to this I spent a number of years working on our Virtual Desktop (VDI) platform and got quite familiar with this unique area of enterprise technology. This is where I first began learning the Now platform so that we could respond quickly to impacts in our workflows due to changes in the way we operate and adjustments to policy during the global pandemic.
+<p>I also have a deep understanding of AWS and its best practices. I played a critical engineering role in the first few years of our enterprise cloud transformation program. This was where I was first introduced to modern infrastructure management concepts such as IAC, CICD, cloud operating model, gitops, and containerized workloads.
+<p>As my experience shows, I am a highly versatile senior engineer that loves learning new technologies and collaborating with others. I'm also ISC2, AWS, and ITIL certified.
+<p>In my personal life, I'm happily married of several years now to a wonderful woman I met on my first day of work at Vanguard. We have a very silly dog. I'm also a home automation enthusiast who works on the Home Assistant platform and retro videogame fanatic."
 
 # use "yes" to display the email contact button,
 # "no" to display an "I'm not looking for work" message,
