@@ -1,3 +1,13 @@
+# mister-hassio
+- project: mister-hassio
+  url: "https://github.com/TheRealBenForce/mister-hassio"
+  #role: Founder & Primary Developer
+  #duration: 2017 &mdash; Present
+  description: >
+    <a href="https://github.com/TheRealBenForce/mister-hassio">mister-hassio</a> is written in python and creates an integration between The MiSTer retro game console running on a DE-10 nano 
+    and an installation of Home Assistant. This allows a user to display Mister FPGA information in their Home Assistant dashboards. To my knowledge, there is nobody silly enough 
+    to do this... so I did.
+
 # s3plus
 - project: s3plus
   #url: "https://github.com/TheRealBenForce/s3plus"
