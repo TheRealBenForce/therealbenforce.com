@@ -25,7 +25,7 @@ phases:
           echo "Approval received"
           aws s3 sync $STAGING_S3_BUCKET $PROD_S3_BUCKET --exclude buildspec.yml
           aws s3 rm $STAGING_S3_BUCKET --recursive --exclude error.html
-          if test "$INVALIDATE_DISTRIBUTION" = 'TRUE'; then
+          if test "$INVALIDATE_DISTRIBUTION" = 'true'; then
             aws cloudfront create-invalidation --distribution-id $PROD_DISTRIBUTION --paths /*
             echo "Invalidated distrbution $PROD_DISTRIBUTION"
           BUILDMSG="Copy to production complete"
