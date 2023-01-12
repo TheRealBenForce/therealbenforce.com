@@ -11,7 +11,7 @@ sass:
 # Resume settings
 resume_avatar:                  "true"
 resume_name:                    "Ben Force"
-resume_title:                   "Senior Enterprise Engineer"
+resume_title:                   "Solutions Consultant"
 
 # used for the contact button in _layouts/resume.html
 resume_contact_email:           "theRealBenForce@gmail.com?subject=I visited your website!"
