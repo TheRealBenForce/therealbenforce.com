@@ -2,50 +2,50 @@
   position: Solutions Consultant | Workplace Experience and Architecture
   duration: February 2022 &mdash; Present
   summary: 
-    Reduce digital fatigue from crew through improvements to process, policy, and technology so they can focus on the moments that matter most.
-    <p>Improve the ServiceNow Service Portal experience by responding to user feedback, driving improvement, and educating service owners on best practice.
-    <p>Implement a self service password reset tool to deflect 17% of all incoming calls to our service desk.
-    <p>Steer the enterprise towards a unified Employee Experience program by connecting and building relationships between key departments and initiatives.
-    
+    Drive employee experience by reducing friction in everyday crew tasks using data driven and user experience research methodologies.
+    <p>Designed and deployed fixes for 85% of negative feedback submitted through employee Service Portal.</p>
+    <p>Lead UX case study of support tickets submitted to our global IT Service Desk detailing why password reset incidents have increased by 25% over the course of the pandemic without returning to normal levels.</p>
+    <p>Implemented fixes for 4 of 11 case study findings with pathways to success for the remainder.</p>
+    <p>Facilitated a round table discussion for key stakeholders identifying the need for industry standard self-service password reset capability.</p>
+
 - company: The Vanguard Group
   position: Senior Platform Engineer | End User Computing
   duration: April 2019 &mdash; February 2022
   summary: 
-    Manage an enterprise scale VMware Anywhere Workspace platform.
-    <p>Full stack development and support of service offering integration into our ServiceNow service catalog.
-    <p>Full stack automation of AWS hosted utilities for daily automation, monitoring and sanitization of our operating and development environments using CI/CD pipeline and integrating with many, many enterprise systems.
-    <p>Evaluate alternative cloud based products such as VMware on AWS, AWS WorkSpaces, and Horizon on Azure and maintain awareness of feature enhancements which can enable new and exciting use cases.
+    Engineer and manage End User Computing services on the VMware Anywhere Workspace Platform, consisting of a variety virtual desktop use cases and over 10,000 corporate and BYOD mobile devices.
+    <p>Overhauled VDI delivery process which reduced request lead time by 22% while volumes increased by 300%.</p>
+    <p>Full stack ownership of Workspace ONE and Vanguard Desktop Cloud ServiceNow catalog items and workflows.</p>
+    <p>Maintain business continuity during pandemic response by managing remote access in novel ways, adapting workflows for a hybrid workforce, and enhancing our monitoring and alerting posture.</p>
+    <p>Research opportunities to enable new use cases by evaluating emerging cloud-based virtual workspace products such as VMware on AWS, AWS WorkSpaces, and Horizon on Azure.</p>
 
 - company: The Vanguard Group
   position: Cloud Infrastructure Engineer | Chief Technology Office
   duration: September 2016 &mdash; April 2019
   summary: 
-    Engineer and maintain architectural designs for critical infrastructure services such as DNS, NTP, Active Directory and firewall using troposphere and cloudformation in a modern multi-account environment. Create Bamboo build and deployment specs to support infrastructure deployment using java. Provide full service support of infrastructure throughout its lifecycle. Plan and deploy releases within a follow-the-sun operating model and enterprise ITIL standards.
-    <p>Plan dashboard and alarm KPIs of critical infrastructure components. Create lambda functions when necessary to enrich existing data. Develop dashboards and alarms using Splunk and CloudWatch Alarms. 
-    <p>Provide oversight and expertise to COTS cloud migration teams within the enterprise for creation of supportable, highly available, and cost effective fully automated "one-click" deployments.
-    <p>Collaborate and develop using the Atlassian tool suite. Support engineering culture throughout the Enterprise. 
-    <p>Daily use of most Atlassian tools, git, python, powershell, Splunk, AWS core services, and cloudformation.
+    Engineer and maintain architectural designs for critical infrastructure hybrid AWS cloud services such as DNS, NTP, Active Directory, network peering, routing and Palo Alto internet egress using python and CloudFormation in an AWS Organization of 14 accounts in 4 regions.
+    <p>Create Bamboo CICD build and deployment specs in Java and YAML to support automated and “one-click” infrastructure deployments.</p>
+    <p>Determine system KPIs of critical infrastructure components. Leverage CloudWatch metrics, CloudWatch logs, and on-prem data to measure system performance. Create python lambda functions when necessary to enrich existing data requirements. Aggregate data across a multi account environment using Splunk and maintain alarms indicating system degradation.</p>
+    <p>Write and support CloudFormation infrastructure that integrates with in-house custom Bamboo plugins.</p>
+    <p>Mentor and guide COTS FinTech product teams as they embark on a cloud transformation journey.</p>
 
 - company: The Vanguard Group
   position: Systems Operations Analyst | Global Technology Office
   duration: May 2014 &mdash; September 2016
   summary: 
-    Provide second level Windows system administration support in a global, highly available, distributed, and clustered environment consisting of over 5,000 physical and virtual Windows servers for a world leader in investment management. 
-    <p>Primary owner and operator of the enterprise fileshare and home drive environment servicing 15,000 internal clients in offices across the globe. Provisioned fileshares, administered security, maintained quotas and designed solutions to complex business problems. 
-    <p>OS level support to incident response involving any Windows server throughout the enterprise.
-    <p>Root cause analysis for Windows System failures, OS level and hardware.
-    <p>Patching, migrations of many kinds, monitoring alarms from many systems, general maintenance as vulnerabilities are found, etc. 
-    <p>Training and mentoring of junior Admins.
-    <p>Powershell automation.
+    System administration for over 5000 Windows servers in a global, highly available, distributed, and clustered environment. Manage Windows Server on bare metal, ESXI, Hyper-V. Own incident management at the hardware and OS level by conducting initial triage, root cause analysis, and perform any associated required maintenance. Improve operation MTTR through PowerShell utility development.</p>
+    <p>Managed enterprise filesharing and home drives servicing over 15000 clients as primary engineer and administrator.</p>
+    <p>Managed enterprise FTP environment as primary engineer and administrator. Migrated FTP virtual directory environment from IIS 6/7 to 8.</p>
+    <p>Implemented Splunk monitoring of IIS logs for assistance in incident management and traffic monitoring.</p>
+    <p>Decreased MTTR of incidents related to service account lockouts by implementing account lockout alerts in Splunk.</p>
+    <p>Troubleshot user access related issues due to misconfigurations within Active Directory and Group Policy.</p>
+    <p>Managed TMG Proxy ruleset.
 
 - company: The Vanguard Group
   position: Software Testing Administrator | Corporate Strategy
   duration: July 2012 &mdash; May 2014
   summary: 
-    Managed testing activities among several testing teams for quarterly investment data warehouse maintenance deployments.
-    <p>Managed and performed testing yearly updates on several investment reporting programs and new in-house applications.
-    <p>Collaborate with Developers and DBAs on requirements collection and application design.
-    <p>Supported the mutual fund reporting teams by training on their tools and processes to improve testing standards.
-    <p>Collaborated with business and IT partners to create comprehensive test plans and test cases. Executed tests in HP Quality Center.
-    <p>Lead DMAIC initiative to reform CAT Test Readiness Review process throughout the department.
-    <p>Trained and mentored new testers.
+    Managed annual testing activities for several investment reporting programs and new in-house applications.
+    <p>Collaborate with Developers and DBAs on requirements collection and application design.</p>
+    <p>Supported the mutual fund reporting teams by training on their tools and processes to improve testing standards.</p>
+    <p>Collaborated with business and IT partners to create comprehensive test plans and test cases. Executed tests in HP Quality Center.</p>
+    <p>Lead DMAIC initiative to reform CAT Test Readiness Review process throughout the department.</p>
