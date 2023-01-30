@@ -25,7 +25,7 @@
     Engineered and maintained architectural designs for critical infrastructure hybrid AWS cloud services such as DNS, NTP, Active Directory, network peering, routing, and Palo Alto internet egress using python and CloudFormation in an AWS Organization of 14 accounts in 4 regions.
     <p>Created Bamboo CICD build and deployment specs in Java and YAML to support automated “one-click” infrastructure deployments.</p>
     <p>Wrote AWS CloudFormation infrastructure for deployment through Bamboo pipeline.</p>
-    <p>Determined system KPIs of critical infrastructure components. Leveraged ASWS CloudWatch metrics, CloudWatch logs, and on-prem data to measure system performance.</p>
+    <p>Determined system KPIs of critical infrastructure components. Leveraged AWS CloudWatch metrics, CloudWatch logs, and on-prem data to measure system performance.</p>
     <p>Developed python lambda functions to enrich existing data requirements, aggregating data across a multi account environment in Splunk dashboards.</p>
     <p>Mentored COTS FinTech product teams as they embarked on a cloud transformation journey.</p>
 
