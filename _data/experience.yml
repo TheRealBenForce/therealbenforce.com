@@ -22,7 +22,7 @@
   position: Hybrid Cloud Infrastructure Engineer | Chief Technology Office
   duration: September 2016 &mdash; April 2019
   summary: 
-    Engineered and maintained architectural designs for critical infrastructure hybrid AWS cloud services such as DNS, NTP, Active Directory, network peering, routing, and Palo Alto internet egress using python and CloudFormation in an AWS Organization of 14 accounts in 4 regions.
+    Engineered and maintained architectural designs for critical hybrid cloud shared services such as DNS, NTP, Active Directory, network peering, routing, and Palo Alto internet egress using python and CloudFormation in an AWS Organization of 14 accounts in 4 regions.
     <p>Created Bamboo CICD build and deployment specs in Java and YAML to support automated “one-click” infrastructure deployments.</p>
     <p>Wrote AWS CloudFormation infrastructure for deployment through Bamboo pipeline.</p>
     <p>Determined system KPIs of critical infrastructure components. Leveraged AWS CloudWatch metrics, CloudWatch logs, and on-prem data to measure system performance.</p>
