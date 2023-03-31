@@ -22,6 +22,7 @@
     <p>Improved VDI delivery process, reducing lead time by 22% while increasing volumes by 300%.</p>
     <p>Developed ServiceNow solutions for Workspace One in response to global pandemic business needs.</p>
     <p>Maintained business continuity and adapted workflows for a hybrid workforce during the pandemic.</p>
+    <p>Implemented infrastructure health checking using Splunk and PagerDuty APIs.</p>
     <p>Researched opportunities to enable new use cases by evaluating emerging cloud-based virtual workspace products such as VMware on AWS, AWS WorkSpaces, and Horizon on Azure.</p>
 
 - company: The Vanguard Group
@@ -43,7 +44,7 @@
     <p>Managed enterprise fileshare and home drives for over 15,000 clients as primary engineer and administrator. 
     <p>Migrated a large FTP environment from IIS 6/7 to 8.</p>
     <p>Implemented Splunk monitoring of IIS logs for assistance in incident management and traffic monitoring. </p>
-    <p>Decreased MTTR of incidents related to service account lockouts by implementing account lockout alerts in Splunk.</p>
+    <p>Decreased MTTD of incidents related to service account lockouts by > 90% by implementing account lockout alerts.</p>
     <p>Automated routine job functions using PowerShell utilities.</p>
 
 - company: The Vanguard Group
@@ -53,5 +54,4 @@
     Managed annual testing activities for investment reporting programs and new in-house applications.
     <p>Collaborated with business representatives, developers, and DBAs on requirements and application design.</p>
     <p>Supported mutual fund reporting teams by training on tools and processes to improve testing standards.</p>
-    <p>Collaborated with business and IT partners to create comprehensive test plans and test cases.</p>
     <p>Lead DMAIC initiative to reform CAT Test Readiness Review process.</p>
