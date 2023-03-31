@@ -14,6 +14,6 @@
   #role: Founder & Primary Developer
   #duration: 2017 &mdash; Present
   description: >
-    <a href="https://github.com/TheRealBenForce/s3plus">s3plus</a> is CloudFormation for the infrastructure that manages a lowcost secure static website (including this site)
-    distrubted over CloudFront CDN as well as a CI/CD pipeline to deploy updates to a secure staging area before signing off on
-    changes that are then pushed to prod.
+    <a href="https://github.com/TheRealBenForce/s3plus">s3plus</a> is CloudFormation for the infrastructure that manages a lowcost secure static website (including this site).
+    This site is hosted in S3 and distributed over CloudFront CDN. It uses an AWS CodePipeline to deploy content updates to a development bucket. 
+    After a review stage in the pipeline, the updates will be promoted to a production bucket.
