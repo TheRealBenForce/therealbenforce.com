@@ -23,18 +23,21 @@ resume_contact_address:         ""
 resume_header_contact_info:     ""
 display_header_contact_info:    "false"
 
-resume_header_intro: "In my current role I collaborate within a small team of engineers, UX designers, and UX researchers to improve the day to day lives of our crew through technology. We strive to reduce digital fatigue from crew so they can focus on the moments that matter most.</p>
-<p>Recently, I've spent a lot of time improving our ServiceNow Service Portal. This involves developing relationships with process and service owners, reading user feedback, conducting interviews and research, and driving change through our development pipeline. Yes, I do the ServiceNow development myself!
-<p>Prior to this I spent a number of years working on our Virtual Desktop (VDI) platform and got quite familiar with this unique area of enterprise technology. This is where I first began learning the Now platform so that we could respond quickly to impacts in our workflows due to changes in the way we operate and adjustments to policy during the global pandemic.</p>
-<p>I also have a deep understanding of AWS and its best practices. I played a critical engineering role in the first few years of our enterprise cloud transformation program. This was where I was first introduced to modern infrastructure management concepts such as IAC, CICD, cloud operating model, gitops, and containerized workloads.</p>
-<p>As you can see, I've had a lot of very different jobs in IT and pride myself on being able to learn new technology domains quickly.</p>
-<p>In my personal life, I'm happily married of several years now to a wonderful woman I met on my first day of work at Vanguard. We have a very silly dog. I'm also a home automation enthusiast who works on the Home Assistant platform and retro videogame fanatic. I love to cook and my new year resolution is to make two new dinners every week.</p>"
+resume_header_intro: "In my current role, I work closely with a small team of DevSecOps Assurance Experts to integrate automated security solutions into our CICD pipelines. This permits me to deepen my security expertise while also allowing me to crossover into cloud engineering and focus on Developer Experience, two areas I'm deeply pationate about.
+
+<p>More recently, I dedicated significant time to enhancing my company's ServiceNow Service Portal. I take pride in having both personally conducted the user research and performed the ServiceNow development. This was an interesting detour in my career that game me new perspective on the platform capabilities and underlying architecture.</p>
+
+<p>I possess a deep understanding of AWS and its best practices, having played a crucial engineering role in the early stages of our enterprise cloud transformation program. This experience introduced me to modern infrastructure management concepts such as IAC, CICD, cloud operating model, GitOps, and containerized workloads. I've also spent significant time as an engineer on the Horizon and Workspace ONE paltforms.</p>
+
+<p>As evident, I have held various IT roles and have developed the ability and reputation of being able to quickly learn new technology domains.</p>
+
+<p>In my personal life, I have been happily married for several years to a wonderful woman I met on my first day at Vanguard. We have an adorably goofy dog. I am also a home automation enthusiast working with the Home Assistant platform, a retro video game fanatic, and a passionate cook with a New Year's resolution to create two new dinners every week.</p>"
 
 # use "yes" to display the email contact button,
 # "no" to display an "I'm not looking for work" message,
 # or remove the resume_looking_for_work option entirely
 # to leave blank
-resume_looking_for_work:        "yes"
+resume_looking_for_work:        "no"
 
 # Decide which sections to use
 # comment out to hide
