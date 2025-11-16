@@ -23,15 +23,8 @@ resume_contact_address:         "Phoenix, Arizona"
 resume_header_contact_info:     ""
 display_header_contact_info:    "false"
 
-resume_header_intro: "In my current role, I work closely with a small team of DevSecOps Assurance Experts to integrate automated security solutions into our CICD pipelines. This permits me to deepen my security expertise while also allowing me to crossover into cloud engineering and focus on Developer Experience, two areas I'm deeply passionate about.
-
-<p>More recently, I dedicated significant time to enhancing my company's ServiceNow Service Portal. I take pride in having both personally conducted the user research and performed the ServiceNow development. This was an interesting detour in my career that game me new perspective on the platform capabilities and underlying architecture.</p>
-
-<p>I possess a deep understanding of AWS and its best practices, having played a crucial engineering role in the early stages of our enterprise cloud transformation program. This experience introduced me to modern infrastructure management concepts such as IAC, CICD, cloud operating model, GitOps, and containerized workloads. I've also spent significant time as an engineer on the Horizon and Workspace ONE paltforms.</p>
-
-<p>As evident, I have held various IT roles and have developed the ability and reputation of being able to quickly learn new technology domains.</p>
-
-<p>In my personal life, I have been happily married for several years to a wonderful woman I met on my first day at Vanguard. We have an adorably goofy dog. I am also a home automation enthusiast working with the Home Assistant platform, a retro video game fanatic, and a passionate cook with a New Year's resolution to create two new dinners every week.</p>"
+resume_header_intro: |
+  Hi! I'm Ben. I'm an experienced security professional with 15+ years across engineering, cloud, endpoint, architecture, and enterprise platforms, now specializing in automation and SOAR to reduce risk and increase operational efficiency at scale. I'm known for delivering measurable impact by eliminating friction, modernizing security capabilities, and driving strategic alignment across complex organizations.
 
 # use "yes" to display the email contact button,
 # "no" to display an "I'm not looking for work" message,
