@@ -8,38 +8,32 @@ on:
         required: true
         type: choice
         options:
-          - therealbenforce.com
           - staging.therealbenforce.com
+          - therealbenforce.com
       release:
         description: Enter release tag to deploy
         required: true
         type: string
 
 jobs:
-  list-releases:
-    runs-on: ubuntu-latest
-    outputs:
-      releases: ${{ steps.get_releases.outputs.releases }}
-    steps:
-      - name: List GitHub Releases
-        id: get_releases
-        run: |
-          releases=$(gh release list --limit 100 --json name -q '.[].name' | jq -R -s -c 'split("\n") | map(select(length > 0))')
-          echo "::set-output name=releases::$releases"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   deploy:
-    needs: list-releases
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Download Release Asset
         run: |
           echo "Downloading release ${{ github.event.inputs.release }}"
-          gh release download ${{ github.event.inputs.release }} --dir ./release
+          gh release download ${{ github.event.inputs.release }} --dir ./release --repo TheRealBenForce/therealbenforce.com
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove specific release zip file
+        run: |
+          echo "Removing specific release zip file"
+          rm -f ./release/${{ github.event.inputs.release }}.zip
 
       - name: Sync to S3
         run: |
