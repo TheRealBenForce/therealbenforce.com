@@ -1,0 +1,71 @@
+name: Deploy CloudFormation Stack
+
+on:
+  workflow_dispatch:
+    inputs:
+      stack-name:
+        description: "The name of the CloudFormation stack to deploy"
+        required: true
+        default: TheRealBenForceIOWebsiteInfrastructure
+      certificate-validation-method:
+        description: "Method for validating SSL certificate"
+        required: false
+        default: DNS
+        type: choice
+        options:
+          - DNS
+          - EMAIL
+      invalidate-distribution:
+        description: "Should the CloudFront distribution be invalidated after deployment"
+        required: false
+        default: true
+      logs-bucket-name:
+        description: "Name of the bucket for collecting logs"
+        required: false
+        default: logs-therealbenforce
+      naked-domain-name:
+        description: "The naked domain name (e.g., example.com)"
+        required: false
+        default: therealbenforce.com
+      site-bucket-name:
+        description: "The name of the S3 bucket for the site"
+        required: false
+        default: therealbenforce.com
+      sub-domain-name:
+        description: "The subdomain name (e.g., www)"
+        required: false
+        default: www
+      support-email:
+        description: "Email address for receiving notifications"
+        required: false
+        default: therealbenforce@gmail.com
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy CloudFormation stack
+        run: |
+          aws cloudformation deploy \
+            --template-file cloudformation.yaml \
+            --stack-name ${{ inputs.stack-name }} \
+            --parameter-overrides \
+              CertificateValidationMethod=${{ inputs.certificate-validation-method }} \
+              InvalidateDistribution=${{ inputs.invalidate-distribution }} \
+              LogsBucketName=${{ inputs.logs-bucket-name }} \
+              NakedDomainName=${{ inputs.naked-domain-name }} \
+              SiteBucketName=${{ inputs.site-bucket-name }} \
+              SubDomainName=${{ inputs.sub-domain-name }} \
+              SupportEmail=${{ inputs.support-email }} \
+            --capabilities CAPABILITY_NAMED_IAM
