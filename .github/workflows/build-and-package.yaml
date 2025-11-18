@@ -24,6 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: bundle install
+        working-directory: src
 
       - name: Build the site
         run: bundle exec jekyll build
