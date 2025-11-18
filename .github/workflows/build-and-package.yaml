@@ -49,25 +49,12 @@ jobs:
           name: site-artifact-${{ github.ref_name }}-${{ github.sha }}
           path: site.zip
 
-      - name: Handle Existing Tag
-        run: |
-          echo "Checking for existing tag: ${{ github.ref_name == 'main' && 'main' || 'dev' }}"
-          existing_tag=$(git ls-remote --tags origin | grep -o "refs/tags/${{ github.ref_name == 'main' && 'main' || 'dev' }}")
-          if [ -n "$existing_tag" ]; then
-            echo "Tag already exists. Deleting existing tag."
-            git push origin :refs/tags/${{ github.ref_name == 'main' && 'main' || 'dev' }}
-          else
-            echo "No existing tag found. Proceeding."
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ github.ref_name == 'main' && 'main' || 'dev' }}-${{ github.sha }} # Use branch name and commit SHA for unique tag
-          release_name: Release ${{ github.ref_name == 'main' && 'main' || 'dev' }}
+          tag_name: ${{ github.ref_name }}-${{ github.sha }}
+          release_name: Release ${{ github.ref_name }}-${{ github.sha }}
           draft: false
           prerelease: false
         env:
