@@ -1,0 +1,75 @@
+name: Build and Package Release
+
+on:
+  push:
+    paths:
+      - src/**
+      - .github/workflows/build-and-package.yaml
+  pull_request:
+    paths:
+      - src/**
+      - .github/workflows/build-and-package.yaml
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2 # Specify the Ruby version
+
+      - name: Install Bundler
+        run: gem install bundler -v 2.7.2
+
+      - name: Cache Ruby gems
+        uses: actions/cache@v3
+        with:
+          path: src/vendor/bundle
+          key: ${{ runner.os }}-bundler-${{ hashFiles('**/src/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bundler-
+
+      - name: Install dependencies
+        run: bundle install --path vendor/bundle
+        working-directory: src
+
+      - name: Build the site
+        run: bundle exec jekyll build
+        working-directory: src
+
+      - name: Package the site
+        run: zip -r site.zip ./_site
+        working-directory: src
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-artifact-${{ github.ref_name }}-${{ github.sha }}
+          path: site.zip
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}-${{ github.sha }}
+          release_name: Release ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}-${{ github.sha }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: src/site.zip
+          asset_name: site-${{ github.ref_name }}-${{ github.sha }}.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
