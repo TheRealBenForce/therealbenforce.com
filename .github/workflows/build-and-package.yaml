@@ -1,0 +1,38 @@
+name: Build and Package Release
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1 # Specify the Ruby version
+
+      - name: Install Bundler
+        run: gem install bundler
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Build the site
+        run: bundle exec jekyll build
+
+      - name: Package the site
+        run: zip -r site.zip ./_site
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: site-artifact
+          path: site.zip
