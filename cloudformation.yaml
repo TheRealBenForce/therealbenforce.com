@@ -1,0 +1,355 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Conditions:
+  HasDomain:
+    Fn::Not:
+    - Fn::Equals:
+      - Ref: NakedDomainName
+      - ''
+  HasSubDomain:
+    Fn::Not:
+    - Fn::Equals:
+      - Ref: SubDomainName
+      - ''
+Description: Deploys a serverless static website with lots of features.
+Metadata: {}
+Outputs:
+  myS3Bucket:
+    Description: S3 URL for website.
+    Value:
+      Fn::GetAtt:
+      - myS3Bucket
+      - WebsiteURL
+  myS3StagingBucket:
+    Description: S3 URL for staging website.
+    Value:
+      Fn::Join:
+      - .
+      - - staging
+        - Ref: NakedDomainName
+Parameters:
+  CertificateValidationMethod:
+    AllowedValues:
+    - DNS
+    - EMAIL
+    Default: DNS
+    Description: Method for validating SSL certificate.
+    Type: String
+  InvalidateDistribution:
+    AllowedValues:
+    - 'true'
+    - 'false'
+    Default: 'false'
+    Description: Should the entire cloudfront distrubution be invalidated after pushing
+      to prod S3 bucket.
+    Type: String
+  LogsBucketName:
+    Default: ''
+    Description: For collecting logs from S3, CloudFront, and emails from SES
+    Type: String
+  NakedDomainName:
+    Default: ''
+    Description: Optional. For registering your S3 website endpoint to a Route 53
+      Alias record set.
+    Type: String
+  SiteBucketName:
+    Default: ''
+    Description: Static website name. If registering with route 53, must be exact
+      url (ie www.foo.io).
+    Type: String
+  SubDomainName:
+    AllowedPattern: ^[a-zA-Z0-9]*$
+    Default: www
+    Description: Optional. Alphanumeric. For also pointing your Cloudfront distribution
+      to something like www, blog, photos.
+    Type: String
+  SupportEmail:
+    Description: For receiving SNS notifications
+    Type: String
+Resources:
+  myCertificate:
+    Condition: HasDomain
+    Properties:
+      DomainName:
+        Ref: NakedDomainName
+      SubjectAlternativeNames:
+        Fn::If:
+        - HasSubDomain
+        - - Ref: NakedDomainName
+          - Fn::Join:
+            - .
+            - - Ref: SubDomainName
+              - Ref: NakedDomainName
+        - - Ref: AWS::NoValue
+      ValidationMethod:
+        Ref: CertificateValidationMethod
+    Type: AWS::CertificateManager::Certificate
+  myDNS:
+    Condition: HasDomain
+    DependsOn: myDistribution
+    Properties:
+      HostedZoneName:
+        Fn::Join:
+        - ''
+        - - Ref: NakedDomainName
+          - .
+      RecordSets:
+      - AliasTarget:
+          DNSName:
+            Fn::GetAtt:
+            - myDistribution
+            - DomainName
+          HostedZoneId: Z2FDTNDATAQYW2
+        Name:
+          Ref: NakedDomainName
+        Type: A
+    Type: AWS::Route53::RecordSetGroup
+  myDistribution:
+    Condition: HasDomain
+    DependsOn: myCertificate
+    Properties:
+      DistributionConfig:
+        Aliases:
+          Fn::If:
+          - HasSubDomain
+          - - Ref: NakedDomainName
+            - Fn::Join:
+              - .
+              - - Ref: SubDomainName
+                - Ref: NakedDomainName
+          - - Ref: NakedDomainName
+        Comment:
+          Fn::Join:
+          - ''
+          - - 'Distribution for '
+            - Ref: NakedDomainName
+        CustomErrorResponses:
+        - ErrorCachingMinTTL: '30'
+          ErrorCode: '404'
+          ResponseCode: '200'
+          ResponsePagePath: /error.html
+        DefaultCacheBehavior:
+          ForwardedValues:
+            Cookies:
+              Forward: all
+            QueryString: 'false'
+          TargetOriginId:
+            Fn::Join:
+            - ''
+            - - Ref: myS3Bucket
+              - -Origin
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        Enabled: 'true'
+        Logging:
+          Bucket:
+            Fn::GetAtt:
+            - myS3LogBucket
+            - DomainName
+          IncludeCookies: 'true'
+          Prefix: CloudFront
+        Origins:
+        - CustomOriginConfig:
+            HTTPPort: '80'
+            HTTPSPort: '443'
+            OriginProtocolPolicy: http-only
+          DomainName:
+            Fn::Join:
+            - ''
+            - - Ref: myS3Bucket
+              - .s3-website-
+              - Ref: AWS::Region
+              - .amazonaws.com
+          Id:
+            Fn::Join:
+            - ''
+            - - Ref: myS3Bucket
+              - -Origin
+        PriceClass: PriceClass_100
+        ViewerCertificate:
+          AcmCertificateArn:
+            Ref: myCertificate
+          SslSupportMethod: sni-only
+    Type: AWS::CloudFront::Distribution
+  myS3Bucket:
+    DeletionPolicy: Retain
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Ref: SiteBucketName
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+          - '*'
+          AllowedMethods:
+          - GET
+          AllowedOrigins:
+          - '*'
+          MaxAge: '3000'
+      LoggingConfiguration:
+        DestinationBucketName:
+          Ref: myS3LogBucket
+        LogFilePrefix: S3
+      VersioningConfiguration:
+        Status: Enabled
+      WebsiteConfiguration:
+        ErrorDocument: error.html
+        IndexDocument: index.html
+    Type: AWS::S3::Bucket
+  myS3BucketPolicy:
+    DependsOn: myS3Bucket
+    Properties:
+      Bucket:
+        Ref: SiteBucketName
+      PolicyDocument:
+        Statement:
+        - Action: s3:GetObject
+          Effect: Allow
+          Principal: '*'
+          Resource:
+            Fn::Join:
+            - ''
+            - - 'arn:aws:s3:::'
+              - Ref: SiteBucketName
+              - /*
+          Sid: Allow Public GET request
+        Version: '2012-10-17'
+    Type: AWS::S3::BucketPolicy
+  myS3LogBucket:
+    Properties:
+      AccessControl: LogDeliveryWrite
+      BucketName:
+        Ref: LogsBucketName
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+          - '*'
+          AllowedMethods:
+          - GET
+          AllowedOrigins:
+          - '*'
+          MaxAge: '3000'
+    Type: AWS::S3::Bucket
+  myS3LogBucketPolicy:
+    Properties:
+      Bucket:
+        Ref: myS3LogBucket
+      PolicyDocument:
+        Statement:
+        - Action:
+          - s3:PutObject
+          Condition:
+            StringEquals:
+              aws:Referer:
+                Ref: AWS::AccountId
+          Effect: Allow
+          Principal:
+            Service:
+            - ses.amazonaws.com
+          Resource:
+            Fn::Join:
+            - ''
+            - - 'arn:aws:s3:::'
+              - Ref: myS3LogBucket
+              - /emails/*
+          Sid: GiveSESPermissionToWriteEmail
+        Version: '2008-10-17'
+    Type: AWS::S3::BucketPolicy
+  myS3StagingBucket:
+    Properties:
+      AccessControl: PublicRead
+      BucketName:
+        Fn::Join:
+        - .
+        - - staging
+          - Ref: SiteBucketName
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+          - '*'
+          AllowedMethods:
+          - GET
+          AllowedOrigins:
+          - '*'
+          MaxAge: '3000'
+      LoggingConfiguration:
+        DestinationBucketName:
+          Ref: myS3LogBucket
+        LogFilePrefix: Staging
+      WebsiteConfiguration:
+        ErrorDocument: error.html
+        IndexDocument: index.html
+    Type: AWS::S3::Bucket
+  myS3StagingBucketPolicy:
+    Properties:
+      Bucket:
+        Ref: myS3StagingBucket
+      PolicyDocument:
+        Statement:
+        - Action: s3:GetObject
+          Effect: Allow
+          Principal: '*'
+          Resource:
+            Fn::Join:
+            - ''
+            - - 'arn:aws:s3:::'
+              - Ref: myS3StagingBucket
+              - /*
+          Sid: Allow Public GET request
+        Version: '2012-10-17'
+    Type: AWS::S3::BucketPolicy
+  myStagingDNS:
+    Condition: HasSubDomain
+    Properties:
+      HostedZoneName:
+        Fn::Join:
+        - ''
+        - - Ref: NakedDomainName
+          - .
+      RecordSets:
+      - AliasTarget:
+          DNSName:
+            Fn::Join:
+            - ''
+            - - s3-website-
+              - Ref: AWS::Region
+              - .amazonaws.com
+          HostedZoneId: Z3AQBSTGFYJSTF
+        Name:
+          Ref: myS3StagingBucket
+        Type: A
+    Type: AWS::Route53::RecordSetGroup
+  mySubDNS:
+    Condition: HasSubDomain
+    DependsOn: myDistribution
+    Properties:
+      HostedZoneName:
+        Fn::Join:
+        - ''
+        - - Ref: NakedDomainName
+          - .
+      RecordSets:
+      - AliasTarget:
+          DNSName:
+            Fn::GetAtt:
+            - myDistribution
+            - DomainName
+          HostedZoneId: Z2FDTNDATAQYW2
+        Name:
+          Fn::Join:
+          - .
+          - - Ref: SubDomainName
+            - Ref: NakedDomainName
+        Type: A
+    Type: AWS::Route53::RecordSetGroup
+  myTopic:
+    Properties:
+      DisplayName:
+        Fn::Join:
+        - ''
+        - - Ref: NakedDomainName
+          - ' infrastructure updates'
+      Subscription:
+      - Endpoint:
+          Ref: SupportEmail
+        Protocol: email
+    Type: AWS::SNS::Topic
