@@ -11,10 +11,9 @@ on:
           - therealbenforce.com
           - staging.therealbenforce.com
       release:
-        description: Select the release to deploy
+        description: Enter release tag to deploy
         required: true
-        type: choice
-        options: ${{ steps.list_releases.outputs.releases }}
+        type: string
 
 jobs:
   list-releases:
