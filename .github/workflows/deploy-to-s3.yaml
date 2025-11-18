@@ -30,6 +30,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Remove specific release zip file
+        run: |
+          echo "Removing specific release zip file"
+          rm -f ./release/${{ github.event.inputs.release }}.zip
+
       - name: Sync to S3
         run: |
           echo "Deploying release ${{ github.event.inputs.release }} to bucket ${{ github.event.inputs.bucket }}"
