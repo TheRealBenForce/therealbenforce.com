@@ -49,18 +49,11 @@ jobs:
           name: site-artifact-${{ github.ref_name }}-${{ github.sha }}
           path: site.zip
 
-      - name: Delete Existing Release
-        run: |
-          gh release delete ${{ github.ref_name }} --yes || true
-          gh api -X DELETE repos/${{ github.repository }}/git/refs/tags/${{ github.ref_name }} || true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ github.ref_name == 'main' && 'main' || 'dev' }} # Use 'main' for main branch, 'dev' for others
+          tag_name: ${{ github.ref_name }}-${{ github.sha }} # Use branch name and commit SHA for unique tag
           release_name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
