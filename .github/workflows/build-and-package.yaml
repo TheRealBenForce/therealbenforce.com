@@ -67,3 +67,5 @@ jobs:
           asset_path: src/site.zip
           asset_name: site-${{ github.ref_name }}-${{ github.sha }}.zip
           asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
