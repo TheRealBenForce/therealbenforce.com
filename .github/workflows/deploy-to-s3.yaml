@@ -1,0 +1,51 @@
+name: Deploy to S3 Buckets
+
+on:
+  workflow_dispatch:
+    inputs:
+      bucket:
+        description: Select the S3 bucket to deploy to
+        required: true
+        type: choice
+        options:
+          - therealbenforce.com
+          - staging.therealbenforce.com
+      release:
+        description: Select the release to deploy
+        required: true
+        type: choice
+        options: ${{ steps.list_releases.outputs.releases }}
+
+jobs:
+  list-releases:
+    runs-on: ubuntu-latest
+    outputs:
+      releases: ${{ steps.get_releases.outputs.releases }}
+    steps:
+      - name: List GitHub Releases
+        id: get_releases
+        run: |
+          releases=$(gh release list --limit 100 --json name -q '.[].name' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "::set-output name=releases::$releases"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    needs: list-releases
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Release Asset
+        run: |
+          echo "Downloading release ${{ github.event.inputs.release }}"
+          gh release download ${{ github.event.inputs.release }} --dir ./release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync to S3
+        run: |
+          echo "Deploying release ${{ github.event.inputs.release }} to bucket ${{ github.event.inputs.bucket }}"
+          aws s3 sync ./release s3://${{ github.event.inputs.bucket }} --delete
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
