@@ -1,13 +1,5 @@
 {
-  "yaml.customTags": [
-    "!Ref scalar",
-    "!Sub scalar",
-    "!GetAtt scalar",
-    "!Join sequence",
-    "!If sequence",
-    "!Equals sequence",
-    "!Not sequence",
-    "!And sequence",
-    "!Or sequence"
-  ]
+    "yaml.schemas": {
+      "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": "cloudformation.yaml"
+    }
 }
