@@ -8,8 +8,8 @@ on:
         required: true
         type: choice
         options:
-          - therealbenforce.com
           - staging.therealbenforce.com
+          - therealbenforce.com
       release:
         description: Enter release tag to deploy
         required: true
