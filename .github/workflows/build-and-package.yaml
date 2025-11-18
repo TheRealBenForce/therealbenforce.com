@@ -20,19 +20,21 @@ jobs:
           ruby-version: 3.1 # Specify the Ruby version
 
       - name: Install Bundler
-        run: gem install bundler
+        run: gem install bundler -v 2.7.2
 
       - name: Install dependencies
         run: bundle install
 
       - name: Build the site
         run: bundle exec jekyll build
+        working-directory: src
 
       - name: Package the site
         run: zip -r site.zip ./_site
+        working-directory: src
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: site-artifact
+          name: site-artifact-${{ github.ref_name }}-${{ github.sha }}
           path: site.zip
