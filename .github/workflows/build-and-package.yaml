@@ -2,9 +2,13 @@ name: Build and Package Release
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - src/**
+      - .github/workflows/build-and-package.yaml
   pull_request:
+    paths:
+      - src/**
+      - .github/workflows/build-and-package.yaml
   workflow_dispatch:
 
 jobs:
