@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -22,8 +22,16 @@ jobs:
       - name: Install Bundler
         run: gem install bundler -v 2.7.2
 
+      - name: Cache Ruby gems
+        uses: actions/cache@v3
+        with:
+          path: src/vendor/bundle
+          key: ${{ runner.os }}-bundler-${{ hashFiles('**/src/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bundler-
+
       - name: Install dependencies
-        run: bundle install
+        run: bundle install --path vendor/bundle
         working-directory: src
 
       - name: Build the site
