@@ -53,8 +53,8 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ github.ref_name }}-${{ github.sha }} # Use branch name and commit SHA for unique tag
-          release_name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}-${{ github.sha }} # Use branch name and commit SHA for unique tag
+          release_name: Release ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
           draft: false
           prerelease: false
         env:
