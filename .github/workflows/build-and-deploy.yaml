@@ -63,8 +63,8 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Invalidate CloudFront distribution
-        if: github.ref != 'refs/heads/main'
+      - name: Invalidate CloudFront distribution on main branch
+        if: github.ref == 'refs/heads/main'
         run: |
           aws cloudfront create-invalidation --distribution-id E12E3K1OI02YXE --paths "/*"
         env:
