@@ -53,7 +53,7 @@ jobs:
             BUCKET=${{ github.event.inputs.bucket }}
           elif [ "${{ github.ref }}" != "refs/heads/main" ]; then
             BUCKET="staging.therealbenforce.com"
-          else [ "${{ github.ref }}" == "refs/heads/main" ]; then
+          else
             BUCKET="therealbenforce.com"
           fi
           aws s3 sync _site/ s3://$BUCKET --delete
