@@ -1,0 +1,68 @@
+name: Build and Deploy to S3
+
+on:
+  push:
+    paths:
+      - src/**
+      - .github/workflows/build-and-package.yaml
+    branches-ignore:
+      - main
+  merge:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      bucket:
+        description: 'Choose target S3 bucket for the built _site'
+        required: true
+        type: choice
+        options:
+          - staging.therealbenforce.com
+          - therealbenforce.com
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2 # Specify the Ruby version
+
+      - name: Install Bundler
+        run: gem install bundler -v 2.7.2
+
+      - name: Cache Ruby gems
+        uses: actions/cache@v3
+        with:
+          path: src/vendor/bundle
+          key: ${{ runner.os }}-bundler-${{ hashFiles('**/src/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bundler-
+
+      - name: Install dependencies
+        run: bundle install --path vendor/bundle
+        working-directory: src
+
+      - name: Build the site
+        run: bundle exec jekyll build
+        working-directory: src
+
+      - name: Deploy to S3
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            BUCKET=${{ github.event.inputs.bucket }}
+          elif [ "${{ github.event_name }}" == "push" ]; then
+            BUCKET="staging.therealbenforce.com"
+          elif [ "${{ github.event_name }}" == "merge" ]; then
+            BUCKET="therealbenforce.com"
+          else
+            echo "Unsupported event: ${{ github.event_name }}"
+            exit 1
+          fi
+          aws s3 sync _site/ s3://$BUCKET --delete
+        working-directory: src
