@@ -66,3 +66,6 @@ jobs:
           fi
           aws s3 sync _site/ s3://$BUCKET --delete
         working-directory: src
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
