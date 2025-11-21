@@ -39,6 +39,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-bundler-
 
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-bundler-${{ hashFiles('**/src/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bundler-
+        working-directory: src
+
       - name: Install dependencies
         run: bundle install --path vendor/bundle
         working-directory: src
