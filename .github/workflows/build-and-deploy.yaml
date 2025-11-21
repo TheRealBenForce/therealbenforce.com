@@ -1,0 +1,75 @@
+name: Build and Deploy to S3
+
+on:
+  push:
+    paths:
+      - src/**
+      - .github/workflows/build-and-deploy.yaml
+  workflow_dispatch:
+    inputs:
+      bucket:
+        description: 'Choose target S3 bucket for the built _site'
+        required: true
+        default: staging.therealbenforce.com
+        type: choice
+        options:
+          - staging.therealbenforce.com
+          - therealbenforce.com
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2 # Specify the Ruby version
+
+      - name: Install Bundler
+        run: gem install bundler -v 2.7.2
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: src/vendor/bundle
+          key: ${{ runner.os }}-bundler-${{ hashFiles('**/src/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bundler-
+
+      - name: Install dependencies
+        run: bundle install --path vendor/bundle
+        working-directory: src
+
+      - name: Build the site
+        run: bundle exec jekyll build
+        working-directory: src
+
+      - name: Deploy to S3
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            BUCKET=${{ github.event.inputs.bucket }}
+          elif [ "${{ github.ref }}" != "refs/heads/main" ]; then
+            BUCKET="staging.therealbenforce.com"
+          else
+            BUCKET="therealbenforce.com"
+          fi
+          aws s3 sync _site/ s3://$BUCKET --delete
+        working-directory: src
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Add deployment link to summary
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            BUCKET="therealbenforce.com"
+            echo "Website Cloudfront link: [https://$BUCKET](https://$BUCKET)" >> $GITHUB_STEP_SUMMARY
+          else
+            BUCKET="staging.therealbenforce.com"
+          fi
+          S3="http://$BUCKET.s3-website-us-east-1.amazonaws.com/"
+          echo "Website S3 link: [$S3]($S3)" >> $GITHUB_STEP_SUMMARY
