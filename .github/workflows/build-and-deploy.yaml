@@ -10,6 +10,7 @@ on:
       bucket:
         description: 'Choose target S3 bucket for the built _site'
         required: true
+        default: staging.therealbenforce.com
         type: choice
         options:
           - staging.therealbenforce.com
