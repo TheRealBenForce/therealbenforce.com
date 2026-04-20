@@ -1,0 +1,24 @@
+---
+import Layout from '@/layouts/Layout.astro'
+
+import CTA from '@/components/blocks/cta-section/cta-section'
+
+const pageTitle = 'Contact'
+const pageDescription =
+  'Get in touch with Ben Force — enterprise security professional, SOAR developer, and cloud infrastructure engineer.'
+const pageKeywords =
+  'Ben Force, contact, security professional, SOAR, DevSecOps'
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Ben Force',
+  description: pageDescription,
+  url: 'https://therealbenforce.com/contact-us'
+}
+---
+
+<Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
+  <CTA />
+</Layout>
+

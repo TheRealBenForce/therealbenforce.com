@@ -1,0 +1,23 @@
+export interface CertificationEntry {
+  name: string
+  url: string
+}
+
+export const certifications: CertificationEntry[] = [
+  {
+    name: 'Microsoft Certified Azure Fundamentals',
+    url: 'https://www.credly.com/badges/46409d37-dd21-4933-980a-b3c7d1b260ff/public_url'
+  },
+  {
+    name: 'ISC2 CISSP',
+    url: 'https://www.youracclaim.com/badges/14c7a12f-e96e-4af2-8699-aba4d5b7affd/public_url'
+  },
+  {
+    name: 'ISC2 CCSP',
+    url: 'https://www.credly.com/badges/7ac09c63-c74e-47ba-b0ce-efd7c4b90702/public_url'
+  },
+  {
+    name: 'ITIL Foundations',
+    url: 'https://candidate.peoplecert.org/MobileReports.aspx?id=40A47E5AE86A7508CE45BBC7566D71FE403449FEF1C775CFAAC32151BCE3577021CD623CD861E0C43D89634C030F06E2F367538F892CC0FF1BB4CA955BF89F2288A0EF255A2EE921256E7F17A09B8CA5B2D9EFBED7C87DBE12D4949208E2ED9342417C8BB64B2AD61BE54E9B7B70FC846FCA8D16FFABF36131ECE29A74C2ABDA'
+  }
+]

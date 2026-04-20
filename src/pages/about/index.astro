@@ -1,0 +1,133 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+import { Button } from '@/components/ui/button'
+
+import { siteConfig } from '@/data/site-config'
+import { experience } from '@/data/experience'
+import { education } from '@/data/education'
+import { certifications } from '@/data/certifications'
+import { projects } from '@/data/projects'
+
+const pageTitle = 'About'
+const pageDescription = `${siteConfig.name} — ${siteConfig.title}. Resume, experience, education, certifications, and projects.`
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: siteConfig.name,
+    jobTitle: siteConfig.title,
+    description: siteConfig.intro,
+    url: 'https://therealbenforce.com/about',
+    sameAs: Object.values(siteConfig.social)
+  }
+}
+---
+
+<Layout title={pageTitle} description={pageDescription} schema={schema}>
+  <section class='py-12 sm:py-16 lg:py-24'>
+    <div class='mx-auto max-w-4xl space-y-16 px-4 sm:px-6 lg:px-8'>
+
+      <!-- Intro -->
+      <div class='text-center'>
+        <p class='text-muted-foreground mx-auto max-w-2xl text-lg'>{siteConfig.intro}</p>
+      </div>
+
+      <Separator />
+
+      <!-- Experience -->
+      <div class='space-y-8'>
+        <h2 class='text-2xl font-semibold sm:text-3xl'>Experience</h2>
+        <div class='space-y-6'>
+          {experience.map((job) => (
+            <Card class='shadow-none'>
+              <CardContent class='space-y-3'>
+                <div class='flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between'>
+                  <div>
+                    <h3 class='text-lg font-medium'>{job.position}</h3>
+                    <p class='text-muted-foreground text-sm'>{job.company}</p>
+                  </div>
+                  <Badge variant='secondary' class='w-fit text-xs font-normal whitespace-nowrap'>{job.duration}</Badge>
+                </div>
+                {job.summary && (
+                  <p class='text-muted-foreground text-sm'>{job.summary}</p>
+                )}
+                {job.highlights.length > 0 && (
+                  <ul class='text-muted-foreground list-disc space-y-1 pl-5 text-sm'>
+                    {job.highlights.map((h) => (
+                      <li>{h}</li>
+                    ))}
+                  </ul>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      <Separator />
+
+      <!-- Education -->
+      <div class='space-y-8'>
+        <h2 class='text-2xl font-semibold sm:text-3xl'>Education</h2>
+        <div class='space-y-4'>
+          {education.map((edu) => (
+            <Card class='shadow-none'>
+              <CardContent>
+                <div class='flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between'>
+                  <div>
+                    <h3 class='text-lg font-medium'>{edu.degree}</h3>
+                    <p class='text-muted-foreground text-sm'>{edu.university}</p>
+                  </div>
+                  <Badge variant='secondary' class='w-fit text-xs font-normal whitespace-nowrap'>{edu.years}</Badge>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      <Separator />
+
+      <!-- Certifications -->
+      <div class='space-y-8'>
+        <h2 class='text-2xl font-semibold sm:text-3xl'>Certifications</h2>
+        <div class='grid gap-4 sm:grid-cols-2'>
+          {certifications.map((cert) => (
+            <a href={cert.url} target='_blank' rel='noopener noreferrer' class='group'>
+              <Card class='shadow-none transition-colors group-hover:border-primary/50'>
+                <CardContent>
+                  <p class='font-medium group-hover:text-primary transition-colors'>{cert.name}</p>
+                </CardContent>
+              </Card>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <Separator />
+
+      <!-- Projects -->
+      <div class='space-y-8'>
+        <h2 class='text-2xl font-semibold sm:text-3xl'>Projects</h2>
+        <div class='space-y-4'>
+          {projects.map((project) => (
+            <a href={project.url} target='_blank' rel='noopener noreferrer' class='group block'>
+              <Card class='shadow-none transition-colors group-hover:border-primary/50'>
+                <CardContent class='space-y-2'>
+                  <h3 class='text-lg font-medium group-hover:text-primary transition-colors'>{project.name}</h3>
+                  <p class='text-muted-foreground text-sm'>{project.description}</p>
+                </CardContent>
+              </Card>
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
